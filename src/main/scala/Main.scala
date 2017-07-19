@@ -5,9 +5,11 @@ object Main {
 
   def main(args: Array[String]): Unit = {
 
-    var valueInput = scala.io.StdIn.readLine()
+    val valueInput = scala.io.StdIn.readLine()
 
-    returnValue(valueInput, 2)
+    print(returnValue(valueInput, 1))
+
+
 
   }
 
@@ -38,31 +40,34 @@ object Main {
 
 
 
-  def returnValue (valueInput : String, scaleType : Int): Unit = {
+  def returnValue (valueInput : String, scaleType : Int): String = {
     val stringLength = valueInput.length
+
     var x = valueInput.length
     val z = valueInput.reverse
     var stringtest = ""
 
     if(stringLength < 3) {
 
-      println(valueInput)
+      valueInput
     }
     else {
-      while(x > 0) {
+      while(x != 0) {
         if(x % 3 == 1) {
-          print(z(x - 1) + " " + longOrShort2(scaleType, x / 3) + " ")
-          stringtest += z(x - 1) + " " + longOrShort2(scaleType, x / 3) + " "
-          x -= 1
+          //print(z(x - 1) + " " + longOrShort2(scaleType, x / 3) + " ")
+          //stringtest += z(x - 1) + " " + longOrShort2(scaleType, x / 3) + " "
+          stringtest = valueInput.substring(valueInput.length - 3, valueInput.length) + longOrShort2(scaleType, x / 3) + stringtest
+          var leftover = valueInput.substring(0, valueInput.length - 3)
+          returnValue(stringtest, scaleType)
         }
         else {
-          print(z(x - 1))
-          stringtest += z(x - 1)
+          //print(z(x - 1))
+          //stringtest += z(x - 1)
           x -= 1
         }
       }
     }
-    //println("\n" + stringtest)
+    stringtest
 
   }
 
